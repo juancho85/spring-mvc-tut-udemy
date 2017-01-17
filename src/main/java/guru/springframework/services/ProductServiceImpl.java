@@ -72,6 +72,11 @@ public class ProductServiceImpl implements ProductService {
         throw new RuntimeException("Product can't be null");
     }
 
+    @Override
+    public void deleteProduct(Integer id) {
+        products.remove(id);
+    }
+
     private Integer getNextKey(){
         return Collections.max(products.keySet()) + 1;
     }
