@@ -3,7 +3,7 @@ package guru.springframework.domain;
 /**
  * Created by juancho on 18/01/2017.
  */
-public class Customer {
+public class Customer implements DomainObject {
 
     private Integer id;
 
@@ -42,10 +42,12 @@ public class Customer {
         this.zipCode = zipCode;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
     }

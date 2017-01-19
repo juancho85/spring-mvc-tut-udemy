@@ -32,12 +32,13 @@
                 <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.imageUrl}"></td>
-                <td><a th:href="${'/product/'+ product.id}">View</a></td>
+                <td><a th:href="${'/product/show/'+ product.id}">View</a></td>
                 <td><a th:href="${'/product/edit/'+ product.id}">Edit</a></td>
                 <td><a th:href="${'/product/delete/'+ product.id}">Delete</a></td>
             </tr>
         </table>
     </div>
+    <hr/>
     <div class="row">
         <div class="col-sm-3">
             <a href="/product/new">New Product</a>
