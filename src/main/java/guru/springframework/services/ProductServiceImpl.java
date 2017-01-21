@@ -2,6 +2,7 @@ package guru.springframework.services;
 
 import guru.springframework.domain.DomainObject;
 import guru.springframework.domain.Product;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.*;
  * Created by juancho on 13/01/2017.
  */
 @Service
+@Profile("map")
 public class ProductServiceImpl extends AbstractMapService implements ProductService {
     @Override
     public List<DomainObject> listAll() {
