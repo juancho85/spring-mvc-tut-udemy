@@ -38,19 +38,4 @@ public class ProductServiceJapDaoImplTest {
         assertEquals(products.size(), 4);
     }
 
-//    @Test
-//    public void getById() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void saveOrUpdate() throws Exception {
-//
-//    }
-//
-//    @Test
-//    public void delete() throws Exception {
-//
-//    }
-
 }
