@@ -1,11 +1,20 @@
 package guru.springframework.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Version;
+
 /**
  * Created by juancho on 18/01/2017.
  */
+@Entity
 public class Customer implements DomainObject {
 
+    @Id
     private Integer id;
+
+    @Version
+    private Integer version;
 
     private String firstName;
 
@@ -50,6 +59,14 @@ public class Customer implements DomainObject {
     @Override
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getFirstName() {
