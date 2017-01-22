@@ -25,6 +25,10 @@ public class User implements DomainObject {
 
     private Boolean enabled = true;
 
+    //when storing user, the customer will be merged as well
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private Customer customer;
+
     @Override
     public Integer getId() {
         return this.id;
@@ -75,5 +79,14 @@ public class User implements DomainObject {
         this.enabled = enabled;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+        //We make the relation bidirectional
+        customer.setUser(this);
+    }
 
 }

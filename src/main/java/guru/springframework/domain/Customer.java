@@ -33,8 +33,7 @@ public class Customer implements DomainObject {
 
     private String zipCode;
 
-    //Cascading of operations (save user with a customer)
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne
     private User user;
 
     public Customer() {

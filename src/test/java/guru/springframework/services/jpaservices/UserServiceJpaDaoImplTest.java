@@ -1,6 +1,7 @@
 package guru.springframework.services.jpaservices;
 
 
+import guru.springframework.domain.Customer;
 import guru.springframework.domain.User;
 import guru.springframework.services.UserService;
 import org.junit.Test;
@@ -35,6 +36,11 @@ public class UserServiceJpaDaoImplTest {
         user.setUsername("someusername");
         user.setPassword("myPassword");
 
+        Customer customer = new Customer();
+        customer.setFirstName("Juan");
+        customer.setLastName("Sanchez");
+        user.setCustomer(customer);
+
         User savedUser = userService.saveOrUpdate(user);
 
         System.out.println("Encrypted Password");
@@ -42,6 +48,8 @@ public class UserServiceJpaDaoImplTest {
 
         assertNotNull(savedUser.getId());
         assertNotNull(savedUser.getEncryptedPassword());
+        assertNotNull(savedUser.getCustomer());
+        assertNotNull(savedUser.getCustomer().getId());
 
     }
 }
