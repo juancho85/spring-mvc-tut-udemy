@@ -29,6 +29,10 @@ public class User implements DomainObject {
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Customer customer;
 
+    //If user-cart link is broken, the cart entity will be deleted
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
+
     @Override
     public Integer getId() {
         return this.id;
@@ -87,6 +91,14 @@ public class User implements DomainObject {
         this.customer = customer;
         //We make the relation bidirectional
         customer.setUser(this);
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
 }
