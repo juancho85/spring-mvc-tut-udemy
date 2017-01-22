@@ -23,34 +23,23 @@ public class Customer implements DomainObject {
 
     private String phoneNumber;
 
-    private String addressLineOne;
+    @Embedded
+    private Address billingAddress;
 
-    private String addressLineTwo;
-
-    private String city;
-
-    private String state;
-
-    private String zipCode;
+    @Embedded
+    private Address shippingAddress;
 
     @OneToOne
     private User user;
 
-    public Customer() {
+    public Customer() { }
 
-    }
-
-    public Customer(Integer id, String firstName, String lastName, String email, String phoneNumber, String addressLineOne, String addressLineTwo, String city, String state, String zipCode) {
+    public Customer(Integer id, String firstName, String lastName, String email, String phoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.addressLineOne = addressLineOne;
-        this.addressLineTwo = addressLineTwo;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
     }
 
     @Override
@@ -103,51 +92,27 @@ public class Customer implements DomainObject {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddressLineOne() {
-        return addressLineOne;
-    }
-
-    public void setAddressLineOne(String addressLineOne) {
-        this.addressLineOne = addressLineOne;
-    }
-
-    public String getAddressLineTwo() {
-        return addressLineTwo;
-    }
-
-    public void setAddressLineTwo(String addressLineTwo) {
-        this.addressLineTwo = addressLineTwo;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public Address getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 }

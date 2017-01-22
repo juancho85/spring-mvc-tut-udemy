@@ -1,5 +1,6 @@
 package guru.springframework.bootstrap;
 
+import guru.springframework.domain.Address;
 import guru.springframework.domain.Customer;
 import guru.springframework.domain.Product;
 import guru.springframework.services.CustomerService;
@@ -70,13 +71,41 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     public void loadCustomers() {
-        List<Customer> customerList = IntStream.range(1, 5).mapToObj(i ->
-                new Customer(i, "name"+i, "Last name "+i, "email@"+i, "+3400000"+i, "address L1 "+i, "address L2 "+i, "city"+i, "state"+i, "zip"+i)
-        ).collect(Collectors.toList());
+        Customer customer1 = new Customer();
+        customer1.setFirstName("Micheal");
+        customer1.setLastName("Weston");
+        customer1.setBillingAddress(new Address());
+        customer1.getBillingAddress().setAddressLine1("1 Main St");
+        customer1.getBillingAddress().setCity("Miami");
+        customer1.getBillingAddress().setState("Florida");
+        customer1.getBillingAddress().setZipCode("33101");
+        customer1.setEmail("micheal@burnnotice.com");
+        customer1.setPhoneNumber("305.333.0101");
+        customerService.saveOrUpdate(customer1);
 
-        for(Customer customer : customerList) {
-            customerService.saveOrUpdate(customer);
-        }
+        Customer customer2 = new Customer();
+        customer2.setFirstName("Fiona");
+        customer2.setLastName("Glenanne");
+        customer2.setBillingAddress(new Address());
+        customer2.getBillingAddress().setAddressLine1("1 Key Biscane Ave");
+        customer2.getBillingAddress().setCity("Miami");
+        customer2.getBillingAddress().setState("Florida");
+        customer2.getBillingAddress().setZipCode("33101");
+        customer2.setEmail("fiona@burnnotice.com");
+        customer2.setPhoneNumber("305.323.0233");
+        customerService.saveOrUpdate(customer2);
+
+        Customer customer3 = new Customer();
+        customer3.setFirstName("Sam");
+        customer3.setLastName("Axe");
+        customer3.setBillingAddress(new Address());
+        customer3.getBillingAddress().setAddressLine1("1 Little Cuba Road");
+        customer3.getBillingAddress().setCity("Miami");
+        customer3.getBillingAddress().setState("Florida");
+        customer3.getBillingAddress().setZipCode("33101");
+        customer3.setEmail("sam@burnnotice.com");
+        customer3.setPhoneNumber("305.426.9832");
+        customerService.saveOrUpdate(customer3);
 
     }
 }
