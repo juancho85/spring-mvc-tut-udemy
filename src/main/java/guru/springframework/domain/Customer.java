@@ -1,8 +1,6 @@
 package guru.springframework.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 /**
  * Created by juancho on 18/01/2017.
@@ -11,6 +9,7 @@ import javax.persistence.Version;
 public class Customer implements DomainObject {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Version
@@ -33,6 +32,10 @@ public class Customer implements DomainObject {
     private String state;
 
     private String zipCode;
+
+    //Cascading of operations (save user with a customer)
+    @OneToOne(cascade = {CascadeType.ALL})
+    private User user;
 
     public Customer() {
 
@@ -139,5 +142,13 @@ public class Customer implements DomainObject {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

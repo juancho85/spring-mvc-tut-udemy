@@ -1,24 +1,23 @@
-package guru.springframework.services;
+package guru.springframework.services.mapservices;
 
 import guru.springframework.domain.Customer;
 import guru.springframework.domain.DomainObject;
-import guru.springframework.domain.Product;
+import guru.springframework.services.CustomerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * Created by juancho on 18/01/2017.
  */
 @Service
 @Profile("map")
-public class CustomerServiceImpl extends AbstractMapService implements CustomerService {
+public class CustomerServiceMapImpl extends AbstractMapService implements CustomerService {
 
-    public CustomerServiceImpl() {
+    public CustomerServiceMapImpl() {
         loadDomainObjects();
     }
 

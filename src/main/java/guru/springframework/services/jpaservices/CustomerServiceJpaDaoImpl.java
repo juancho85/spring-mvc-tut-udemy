@@ -1,13 +1,13 @@
-package guru.springframework.services;
+package guru.springframework.services.jpaservices;
 
 import guru.springframework.domain.Customer;
-import guru.springframework.domain.Product;
+import guru.springframework.services.CustomerService;
+import guru.springframework.services.security.EncryptionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import java.util.List;
 
 /**
@@ -15,19 +15,15 @@ import java.util.List;
  */
 @Service
 @Profile("jpadao")
-public class CustomerServiceJapDaoImpl implements CustomerService {
+public class CustomerServiceJpaDaoImpl extends AbstractJpaDaoService implements CustomerService {
 
-    public EntityManagerFactory getEmf() {
-        return emf;
+
+    private EncryptionService encryptionService;
+
+    @Autowired
+    public void setEncryptionService(EncryptionService encryptionService) {
+        this.encryptionService = encryptionService;
     }
-
-    //Indicate to inject emf
-    @PersistenceUnit
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-
-    private EntityManagerFactory emf;
 
     @Override
     public List<Customer> listAll() {
@@ -44,10 +40,17 @@ public class CustomerServiceJapDaoImpl implements CustomerService {
     @Override
     public Customer saveOrUpdate(Customer domainObject) {
         EntityManager em = emf.createEntityManager();
+
         em.getTransaction().begin();
-        //merge = save or update
+
+        if (domainObject.getUser() != null && domainObject.getUser().getPassword() != null) {
+            domainObject.getUser().setEncryptedPassword(
+                    encryptionService.encryptString(domainObject.getUser().getPassword()));
+        }
+
         Customer savedCustomer = em.merge(domainObject);
         em.getTransaction().commit();
+
         return savedCustomer;
     }
 

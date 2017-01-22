@@ -1,12 +1,11 @@
-package guru.springframework.services;
+package guru.springframework.services.jpaservices;
 
 import guru.springframework.domain.Product;
+import guru.springframework.services.ProductService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import java.util.List;
 
 /**
@@ -14,19 +13,7 @@ import java.util.List;
  */
 @Service
 @Profile("jpadao")
-public class ProductServiceJapDaoImpl implements ProductService {
-
-    public EntityManagerFactory getEmf() {
-        return emf;
-    }
-
-    //Indicate to inject emf
-    @PersistenceUnit
-    public void setEmf(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-
-    private EntityManagerFactory emf;
+public class ProductServiceJapDaoImpl extends AbstractJpaDaoService implements ProductService {
 
     @Override
     public List<Product> listAll() {

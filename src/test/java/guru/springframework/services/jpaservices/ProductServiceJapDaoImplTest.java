@@ -1,7 +1,8 @@
-package guru.springframework.services;
+package guru.springframework.services.jpaservices;
 
 import guru.springframework.config.JpaIntegrationConfig;
 import guru.springframework.domain.Product;
+import guru.springframework.services.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
