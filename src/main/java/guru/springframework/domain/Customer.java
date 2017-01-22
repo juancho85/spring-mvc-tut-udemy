@@ -1,19 +1,13 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by juancho on 18/01/2017.
  */
 @Entity
-public class Customer implements DomainObject {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Version
-    private Integer version;
+public class Customer extends AbstractDomainEntity {
 
     private String firstName;
 
@@ -29,35 +23,17 @@ public class Customer implements DomainObject {
     @Embedded
     private Address shippingAddress;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
     public Customer() { }
 
     public Customer(Integer id, String firstName, String lastName, String email, String phoneNumber) {
-        this.id = id;
+        super.setId(id);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getFirstName() {

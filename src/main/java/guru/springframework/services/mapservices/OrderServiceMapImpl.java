@@ -1,8 +1,8 @@
 package guru.springframework.services.mapservices;
 
 import guru.springframework.domain.DomainObject;
-import guru.springframework.domain.User;
-import guru.springframework.services.UserService;
+import guru.springframework.domain.Order;
+import guru.springframework.services.OrderService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +13,11 @@ import java.util.List;
  */
 @Service
 @Profile("map")
-public class UserServiceMapImpl extends AbstractMapService implements UserService {
+public class OrderServiceMapImpl extends AbstractMapService implements OrderService {
 
     @Override
-    public User saveOrUpdate(User domainObject) {
-        return (User) super.saveOrUpdate(domainObject);
+    public Order saveOrUpdate(Order domainObject) {
+        return (Order) super.saveOrUpdate(domainObject);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class UserServiceMapImpl extends AbstractMapService implements UserServic
     }
 
     @Override
-    public User getById(Integer id){
-        return (User) super.getById(id);
+    public Order getById(Integer id){
+        return (Order) super.getById(id);
     }
 
     @Override

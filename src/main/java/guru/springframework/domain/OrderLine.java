@@ -7,22 +7,22 @@ import java.util.Date;
  * Created by juancho on 22/01/2017.
  */
 @Entity
-public class CartDetail extends AbstractDomainEntity {
+public class OrderLine extends AbstractDomainEntity {
 
     @ManyToOne
-    private Cart cart;
+    private Order order;
 
     @OneToOne
     private Product product;
 
     private Integer quantity;
 
-    public Cart getCart() {
-        return cart;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Product getProduct() {
@@ -40,4 +40,5 @@ public class CartDetail extends AbstractDomainEntity {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
 }

@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by juancho on 22/01/2017.
@@ -45,7 +46,7 @@ public class CustomerServiceJpaDaoImplTest {
         customer.setUser(user);
 
         Customer savedCustomer = customerService.saveOrUpdate(customer);
+        assertNotNull(savedCustomer.getUser().getId());
 
-        assert savedCustomer.getUser().getId() != null;
     }
 }
